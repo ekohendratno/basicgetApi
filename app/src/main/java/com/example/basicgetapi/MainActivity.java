@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(v.getContext(),"NIK Kosong",Toast.LENGTH_SHORT).show();
                 }else{
 
-                    String url = "http://192.168.100.1/webapi/api.php";
+                    String URL = "http://192.168.100.1/webapi/api.php?nik="+nik_text;
 
                     RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                     StringRequest request = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
