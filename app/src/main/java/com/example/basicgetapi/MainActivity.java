@@ -17,6 +17,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView keluaran = findViewById(R.id.keluaran);
+        /**
+         * UBAH JADI INI
+         */
+        TextView nama = findViewById(R.id.nama);
+        TextView alamat = findViewById(R.id.alamat);
+
         EditText nik = findViewById(R.id.nik);
+
         findViewById(R.id.cari).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +51,24 @@ public class MainActivity extends AppCompatActivity {
                     StringRequest request = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            keluaran.setText(response.toString());
-                            Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+
+                            /**
+                             * UBAH JADI INI
+                             */
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+
+                                if(jsonObject.getBoolean("response")){ //jika response TRUE
+
+                                    nama.setText( jsonObject.getString("nama") );
+                                    alamat.setText( jsonObject.getString("alamat") );
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
                     }, new Response.ErrorListener() {
                         @Override
