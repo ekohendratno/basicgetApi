@@ -15,6 +15,7 @@ implementation 'com.android.volley:volley:1.1.1'
 
 #activity_main.xml
 
+<blockquote>
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,11 +44,11 @@ implementation 'com.android.volley:volley:1.1.1'
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
-
+</blockquote>
 
 #MainActivity.java
 
-
+<blockquote>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +84,11 @@ implementation 'com.android.volley:volley:1.1.1'
             }
         });
     }
-
+</blockquote>
 
 #api.php
 
-<pre>
+<blockquote>
 <?php
 
 $nik = $_GET['nik'];
@@ -111,5 +112,5 @@ if($nik == "1111"){
 header('Content-Type: application/json');
 echo json_encode($data);
 
-</pre>
+</blockquote>
 
