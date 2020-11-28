@@ -87,6 +87,7 @@ implementation 'com.android.volley:volley:1.1.1'
 
 #api.php
 
+<pre>
 <?php
 
 $nik = $_GET['nik'];
@@ -109,4 +110,6 @@ if($nik == "1111"){
 
 header('Content-Type: application/json');
 echo json_encode($data);
+
+</pre>
 
