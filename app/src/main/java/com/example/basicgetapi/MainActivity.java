@@ -2,6 +2,7 @@ package com.example.basicgetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,12 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * UBAH JADI INI
-         */
-        TextView nama = findViewById(R.id.nama);
-        TextView alamat = findViewById(R.id.alamat);
-
         EditText nik = findViewById(R.id.nik);
 
         findViewById(R.id.cari).setOnClickListener(new View.OnClickListener() {
@@ -45,38 +40,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(v.getContext(),"NIK Kosong",Toast.LENGTH_SHORT).show();
                 }else{
 
-                    String URL = "http://192.168.100.1/webapi/api.php?nik="+nik_text;
+                    Intent intent = new Intent(MainActivity.this, ActivityLain.class);
+                    intent.putExtra("nik",nik_text);
+                    startActivity(intent);
 
-                    RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                    StringRequest request = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            /**
-                             * UBAH JADI INI
-                             */
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-
-                                if(jsonObject.getBoolean("response")){ //jika response TRUE
-
-                                    nama.setText( jsonObject.getString("nama") );
-                                    alamat.setText( jsonObject.getString("alamat") );
-
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("error",error.toString());
-                        }
-                    });
-                    queue.add(request);
                 }
             }
         });
